@@ -53,7 +53,7 @@ services:
       - nextcloud
     networks:
       - webproxy
-     links:
+    links:
       - nextcloud
       
 
