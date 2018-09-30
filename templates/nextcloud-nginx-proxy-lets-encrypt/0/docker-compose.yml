@@ -31,6 +31,8 @@ services:
     networks:
       - webproxy
       - default
+    links:
+      - nginx-proxy
 
   nginx-proxy:
     image: jwilder/nginx-proxy
@@ -53,6 +55,8 @@ services:
       - nextcloud
     networks:
       - webproxy
+     links:
+      - nextcloud
       
 
   letsencrypt-companion:
