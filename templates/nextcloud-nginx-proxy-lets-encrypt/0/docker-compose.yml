@@ -21,9 +21,8 @@ services:
       - LETSENCRYPT_HOST=${VIRTUAL_HOST}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
       - MYSQL_HOST=db
-    expose:
-      - "80"
-      - "443"
+    ports:
+      - 443:80
     depends_on:
       - db
     networks:
