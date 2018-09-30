@@ -64,6 +64,8 @@ services:
       - nginx-proxy
     labels:
       io.rancher.sidekicks: nginx-proxy
+      io.rancher.sidekicks: nextcloud
+      io.rancher.sidekicks: db
 
 
 
