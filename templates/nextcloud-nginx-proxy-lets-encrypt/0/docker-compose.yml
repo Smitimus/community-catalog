@@ -23,9 +23,9 @@ services:
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
       - MYSQL_HOST=db
       - LETSENCRYPT_TEST=true
-    ports:
-      - 80:80
-      - 443:443
+    expose:
+      - "80"
+      - "443"
     depends_on:
       - db
 
