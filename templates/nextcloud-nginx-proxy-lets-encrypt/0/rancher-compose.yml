@@ -2,15 +2,10 @@ version: '2'
 
 catalog:
 
-  name: nextcloud
+  name: nextcloud nginx proxy lets encrypt
   version: 0.0.1
   description: Nextcloud - Enterprise File Sync and Share
   questions:
-    - variable: NEXTCLOUD_PORT
-      label: Port
-      default: 80
-      required: true
-      type: int
     - variable: MYSQL_ROOT_PASS
       label: MySQL root password
       required: true
@@ -29,22 +24,33 @@ catalog:
       label: MySQL Pass
       required: true
       type: password
-
+    - variable: LETSENCRYPT_EMAIL
+      label: LetsEncrypt Email
+      required: true
+      type: string
+    - variable: LETSENCRYPT_HOST
+      label: LetsEncrypt Host
+      required: true
+      type: string
+    - variable: VIRTUAL_HOST
+      label: Virtual Host
+      required: true
+      type: string      
 services:
 
-  nextcloud:
+  db:
     scale: 1
     start_on_create: true
 
-  nextcloud-data:
+  app:
     scale: 1
     start_on_create: true
 
-  mariadb:
+  proxy:
     scale: 1
     start_on_create: true
 
-  mariadb-data:
+  letsencrypt-companion:
     scale: 1
     start_on_create: true
 
