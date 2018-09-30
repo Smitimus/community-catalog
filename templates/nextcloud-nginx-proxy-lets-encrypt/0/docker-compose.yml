@@ -28,9 +28,6 @@ services:
       - 443:443
     depends_on:
       - db
-    networks:
-      - proxy-tier
-      - default
 
   nginx-proxy:
     image: jwilder/nginx-proxy
@@ -47,8 +44,6 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
       - DEFAULT_HOST=${VIRTUAL_HOST}
-    networks:
-      - proxy-tier
 
   letsencrypt-companion:
     image: jrcs/letsencrypt-nginx-proxy-companion
@@ -60,8 +55,6 @@ services:
       - vhost.d:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks:
-      - proxy-tier
     depends_on:
       - nginx-proxy
     labels:
@@ -75,4 +68,6 @@ volumes:
   html:
 
 networks:
-  proxy-tier:
+  default:
+    external:
+      name: webproxy
