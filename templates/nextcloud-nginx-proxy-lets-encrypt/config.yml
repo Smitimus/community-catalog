@@ -1,4 +1,4 @@
-name: nextcloud
+name: nextcloud nginx proxy lets encrypt
 description: Enterprise File Sync and Share
 version: 0.0.1
 category: File Synchronisation
