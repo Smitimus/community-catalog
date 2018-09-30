@@ -32,6 +32,7 @@ services:
 
   proxy:
     image: jwilder/nginx-proxy
+    build: ./proxy
     restart: always
     ports:
       - 80:80
