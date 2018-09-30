@@ -21,6 +21,7 @@ services:
       - LETSENCRYPT_HOST=${VIRTUAL_HOST}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
       - MYSQL_HOST=db
+      - VIRTUAL_PROTO=https
     depends_on:
       - db
     networks:
@@ -28,7 +29,7 @@ services:
       - default
 
   nginx-proxy:
-    image: jwilder/nginx-proxy
+    image: jwilder/nginx-proxy:alpine
     restart: always
     ports:
       - 80:80
@@ -42,6 +43,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
       - DEFAULT_HOST=${VIRTUAL_HOST}
+      - HTTPS_METHOD=noredirect
     networks:
       - proxy-tier
 
