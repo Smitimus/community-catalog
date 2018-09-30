@@ -3,7 +3,7 @@ version: '2'
 catalog:
 
   name: nextcloud with ssl
-  version: 0.0.11
+  version: 1.0
   description: Nextcloud - Enterprise File Sync and Share
   questions:
     - variable: MYSQL_DATABASE
