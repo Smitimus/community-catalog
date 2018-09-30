@@ -58,6 +58,8 @@ services:
       - proxy-tier
     depends_on:
       - nginx-proxy
+    labels:
+      io.rancher.sidekicks: nginx-proxy
 
 volumes:
   db:
