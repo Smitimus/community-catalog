@@ -45,6 +45,7 @@ services:
     environment:
       - DEFAULT_HOST=${VIRTUAL_HOST}
       - HTTPS_METHOD=noredirect
+      - HSTS=off
     depends_on:
       - nextcloud
 
