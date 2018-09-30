@@ -43,6 +43,7 @@ services:
     volumes:
       - certs:/etc/nginx/certs:ro
       - vhost.d:/etc/nginx/vhost.d
+      - conf.d:/etc/nginx/conf.d
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
