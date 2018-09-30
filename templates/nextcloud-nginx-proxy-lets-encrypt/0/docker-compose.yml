@@ -26,11 +26,12 @@ services:
     environment:
       - VIRTUAL_HOST=${VIRTUAL_HOST}
       - VIRTUAL_PORT=80
-      - HTTPS_METHOD=noredirect
       - LETSENCRYPT_HOST=${VIRTUAL_HOST}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
-      - MYSQL_HOST=db
       - LETSENCRYPT_TEST=true
+      - MYSQL_HOST=db
+      - HTTPS_METHOD=noredirect
+      - HSTS=off
     expose:
       - "80"
     depends_on:
@@ -40,7 +41,7 @@ services:
 
   nginx-proxy:
     container_name: nginx-proxy
-    image: jwilder/nginx-proxy
+    image: jwilder/nginx-proxy:alpine
     restart: always
     ports:
       - 80:80
