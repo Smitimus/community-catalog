@@ -29,8 +29,6 @@ services:
       - "443"
     depends_on:
       - db
-    extra_hosts:
-      - "nextcloud:127.0.0.1"
     network_mode: "bridge"
 
   nginx-proxy:
@@ -49,6 +47,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     depends_on:
       - nextcloud
+    network_mode: "bridge"
 
 
   letsencrypt-companion:
