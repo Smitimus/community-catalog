@@ -1,7 +1,7 @@
 version: '2'
 
 networks:
-  nextcloud_network:
+  webproxy:
     external: false
 
 services:
@@ -15,7 +15,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASS}
       - MYSQL_PASSWORD=${MYSQL_PASS}
     networks:
-      - nextcloud_network
+      - webproxy
 
   nextcloud:
     container_name: nextcloud
@@ -36,7 +36,7 @@ services:
     depends_on:
       - db
     networks:
-      - nextcloud_network
+      - webproxy
 
   nginx-proxy:
     container_name: nginx-proxy
@@ -57,11 +57,10 @@ services:
       - HSTS=off
     depends_on:
       - nextcloud
-    networks:
-      - nextcloud_network
     links:
       - nextcloud
-      
+    networks:
+      - webproxy
 
   letsencrypt-companion:
     container_name: letsencrypt-companio
@@ -79,6 +78,6 @@ services:
     labels:
       io.rancher.sidekicks: nginx-proxy
     networks:
-      - nextcloud_network
+      - webproxy
 
 
