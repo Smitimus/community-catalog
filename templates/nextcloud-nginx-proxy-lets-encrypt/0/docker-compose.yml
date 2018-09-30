@@ -10,8 +10,6 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASS}
       - MYSQL_PASSWORD=${MYSQL_PASS}
-    env_file:
-      - db.env
 
   nextcloud:
     image: nextcloud:12-apache
@@ -23,8 +21,6 @@ services:
       - LETSENCRYPT_HOST=${LETSENCRYPT_HOST}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
       - MYSQL_HOST=db
-    env_file:
-      - db.env
     depends_on:
       - mariadb
     networks:
