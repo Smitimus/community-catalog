@@ -50,7 +50,7 @@ services:
     scale: 1
     start_on_create: true
 
-  letsencrypt-nginx-proxy-companion:
+  letsencrypt-companion:
     scale: 1
     start_on_create: true
 
