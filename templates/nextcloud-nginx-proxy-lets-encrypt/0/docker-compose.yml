@@ -18,7 +18,7 @@ services:
       - nextcloud_network
 
   nextcloud:
-    name: nextcloud
+    container_name: nextcloud
     image: nextcloud:apache
     restart: always
     volumes:
@@ -39,7 +39,7 @@ services:
       - nextcloud_network
 
   nginx-proxy:
-    name: nginx-proxy
+    container_name: nginx-proxy
     image: jwilder/nginx-proxy
     restart: always
     ports:
@@ -64,7 +64,7 @@ services:
       
 
   letsencrypt-companion:
-    name: letsencrypt-companio
+    container_name: letsencrypt-companio
     image: jrcs/letsencrypt-nginx-proxy-companion
     restart: always
     volumes_from:
@@ -81,10 +81,4 @@ services:
     networks:
       - nextcloud_network
 
-volumes:
-  db:
-  nextcloud:
-  certs:
-  vhost.d:
-  html:
 
