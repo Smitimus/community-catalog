@@ -1,9 +1,5 @@
 version: '2'
 
-networks:
-  webproxy:
-    external: false
-
 services:
   db:
     image: mariadb
@@ -38,6 +34,8 @@ services:
       - db
     networks:
       - webproxy
+    extra_hosts:
+      - "hostname:127.0.0.1"
 
   nginx-proxy:
     container_name: nginx-proxy
@@ -57,8 +55,6 @@ services:
       - HTTPS_METHOD=noredirect
       - HSTS=off
     depends_on:
-      - nextcloud
-    links:
       - nextcloud
     networks:
       - webproxy
@@ -82,3 +78,6 @@ services:
       - webproxy
 
 
+networks:
+  webproxy:
+    external: false
