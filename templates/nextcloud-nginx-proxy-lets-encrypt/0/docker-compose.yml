@@ -21,7 +21,6 @@ services:
       - LETSENCRYPT_HOST=${VIRTUAL_HOST}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
       - MYSQL_HOST=db
-      - VIRTUAL_PROTO=https
       - LETSENCRYPT_TEST=true
     expose:
       - "80"
