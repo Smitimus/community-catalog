@@ -18,7 +18,7 @@ services:
       - nextcloud:/var/www/html
     environment:
       - VIRTUAL_HOST=${VIRTUAL_HOST}
-      - VIRTUAL_PORT=80
+      - VIRTUAL_PORT=443
       - LETSENCRYPT_HOST=${VIRTUAL_HOST}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
       - MYSQL_HOST=db
