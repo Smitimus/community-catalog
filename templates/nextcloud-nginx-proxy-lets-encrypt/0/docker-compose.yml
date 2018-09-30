@@ -31,8 +31,6 @@ services:
     networks:
       - webproxy
       - default
-    links:
-      - nginx-proxy
 
   nginx-proxy:
     image: jwilder/nginx-proxy
