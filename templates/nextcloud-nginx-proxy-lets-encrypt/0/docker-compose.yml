@@ -44,6 +44,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
       - DEFAULT_HOST=${VIRTUAL_HOST}
+      - HTTPS_METHOD=noredirect
     depends_on:
       - nextcloud
 
