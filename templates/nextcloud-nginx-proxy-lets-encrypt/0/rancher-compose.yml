@@ -28,19 +28,16 @@ catalog:
       type: string      
 services:
 
-  db:
+  mariadb:
     scale: 1
     start_on_create: true
 
-  app:
+  nextcloud:
     scale: 1
     start_on_create: true
 
-  proxy:
+  letsencrypt-nginx-proxy-companion:
     scale: 1
     start_on_create: true
 
-  letsencrypt-companion:
-    scale: 1
-    start_on_create: true
 

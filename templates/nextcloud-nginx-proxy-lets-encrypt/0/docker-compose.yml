@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  db:
+  mariadb:
     image: mariadb
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     restart: always
@@ -13,8 +13,8 @@ services:
     env_file:
       - db.env
 
-  app:
-    image: nextcloud:apache
+  nextcloud:
+    image: nextcloud:12-apache
     restart: always
     volumes:
       - nextcloud:/var/www/html
@@ -26,7 +26,7 @@ services:
     env_file:
       - db.env
     depends_on:
-      - db
+      - mariadb
     networks:
       - proxy-tier
       - default
@@ -61,7 +61,7 @@ services:
       - proxy
 
 volumes:
-  db:
+  mariadb:
   nextcloud:
   certs:
   vhost.d:
