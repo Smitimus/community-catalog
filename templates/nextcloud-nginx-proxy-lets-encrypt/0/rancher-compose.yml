@@ -31,7 +31,12 @@ catalog:
     - variable: VIRTUAL_HOST
       label: Virtual Host
       required: true
-      type: string      
+      type: string
+    - variable: LETSENCRYPT_TEST
+      default: true
+      label: Test Let's Encrypt?
+      required: true
+      type: string       
 services:
 
   db:
