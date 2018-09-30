@@ -1,5 +1,9 @@
 version: '2'
 
+networks:
+  nextcloud_network:
+    external: false
+
 services:
   db:
     image: mariadb
@@ -10,8 +14,11 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASS}
       - MYSQL_PASSWORD=${MYSQL_PASS}
+    networks:
+      - nextcloud_network
 
   nextcloud:
+    name: nextcloud
     image: nextcloud:apache
     restart: always
     volumes:
@@ -29,10 +36,10 @@ services:
     depends_on:
       - db
     networks:
-      - webproxy
-      - default
+      - nextcloud_network
 
   nginx-proxy:
+    name: nginx-proxy
     image: jwilder/nginx-proxy
     restart: always
     ports:
@@ -51,12 +58,13 @@ services:
     depends_on:
       - nextcloud
     networks:
-      - webproxy
+      - nextcloud_network
     links:
       - nextcloud
       
 
   letsencrypt-companion:
+    name: letsencrypt-companio
     image: jrcs/letsencrypt-nginx-proxy-companion
     restart: always
     volumes_from:
@@ -71,7 +79,7 @@ services:
     labels:
       io.rancher.sidekicks: nginx-proxy
     networks:
-      - webproxy
+      - nextcloud_network
 
 volumes:
   db:
@@ -80,7 +88,3 @@ volumes:
   vhost.d:
   html:
 
-networks:
-  default:
-    external:
-      name: webproxy
