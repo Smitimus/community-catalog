@@ -45,6 +45,8 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
       - DEFAULT_HOST=${VIRTUAL_HOST}
+    depends_on:
+      - nextcloud
 
   letsencrypt-companion:
     image: jrcs/letsencrypt-nginx-proxy-companion
