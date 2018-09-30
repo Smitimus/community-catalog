@@ -28,7 +28,7 @@ services:
       - default
 
   proxy:
-    build: ./proxy
+    image: jwilder/nginx-proxy
     restart: always
     ports:
       - 80:80
