@@ -22,6 +22,9 @@ services:
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
       - MYSQL_HOST=db
       - VIRTUAL_PROTO=https
+    expose:
+      - "80"
+      - "443"
     depends_on:
       - db
     networks:
