@@ -57,6 +57,8 @@ services:
       - HSTS=off
     depends_on:
       - nextcloud
+    labels:
+      io.rancher.sidekicks: nextcloud
     links:
       - nextcloud
     networks:
