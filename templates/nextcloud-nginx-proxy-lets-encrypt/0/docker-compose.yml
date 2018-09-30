@@ -28,6 +28,9 @@ services:
       - "443"
     depends_on:
       - db
+    networks:
+      - webproxy
+      - default
 
   nginx-proxy:
     image: jwilder/nginx-proxy
@@ -48,6 +51,9 @@ services:
       - HSTS=off
     depends_on:
       - nextcloud
+    networks:
+      - webproxy
+      
 
   letsencrypt-companion:
     image: jrcs/letsencrypt-nginx-proxy-companion
@@ -63,6 +69,8 @@ services:
       - nginx-proxy
     labels:
       io.rancher.sidekicks: nginx-proxy
+    networks:
+      - webproxy
 
 volumes:
   db:
