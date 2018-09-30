@@ -2,8 +2,8 @@ version: '2'
 
 catalog:
 
-  name: nextcloud nginx proxy lets encrypt
-  version: 0.0.1
+  name: nextcloud with ssl
+  version: 0.0.11
   description: Nextcloud - Enterprise File Sync and Share
   questions:
     - variable: MYSQL_DATABASE
