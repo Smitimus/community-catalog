@@ -43,6 +43,8 @@ services:
     volumes:
       - certs:/etc/nginx/certs:ro
       - vhost.d:/etc/nginx/vhost.d
+      - vconf.d/uploadsize.conf:/etc/nginx/vconf.d/uploadsize.conf
+      - vconf.d/proxytimeout.conf:/etc/nginx/vconf.d/proxytimeout.conf      
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
