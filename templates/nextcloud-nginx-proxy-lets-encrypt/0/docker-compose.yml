@@ -10,8 +10,6 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASS}
       - MYSQL_PASSWORD=${MYSQL_PASS}
-    networks:
-      - webproxy
 
   nextcloud:
     container_name: nextcloud
@@ -26,16 +24,12 @@ services:
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
       - LETSENCRYPT_TEST=true
       - MYSQL_HOST=db
-      - HTTPS_METHOD=noredirect
-      - HSTS=off
     expose:
       - "80"
     depends_on:
       - db
-    networks:
-      - webproxy
     extra_hosts:
-      - "hostname:127.0.0.1"
+      - "nextcloud:127.0.0.1"
 
   nginx-proxy:
     container_name: nginx-proxy
@@ -51,13 +45,9 @@ services:
       - vhost.d:/etc/nginx/vhost.d   
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
-    environment:
-      - HTTPS_METHOD=noredirect
-      - HSTS=off
     depends_on:
       - nextcloud
-    networks:
-      - webproxy
+
 
   letsencrypt-companion:
     container_name: letsencrypt-companio
@@ -74,10 +64,10 @@ services:
       - nginx-proxy
     labels:
       io.rancher.sidekicks: nginx-proxy
-    networks:
-      - webproxy
+
 
 
 networks:
-  webproxy:
-    external: false
+  default:
+    external:
+      name: webproxy
