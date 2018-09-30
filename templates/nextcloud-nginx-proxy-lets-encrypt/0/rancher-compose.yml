@@ -28,10 +28,6 @@ catalog:
       label: LetsEncrypt Email
       required: true
       type: string
-    - variable: LETSENCRYPT_HOST
-      label: LetsEncrypt Host
-      required: true
-      type: string
     - variable: VIRTUAL_HOST
       label: Virtual Host
       required: true
