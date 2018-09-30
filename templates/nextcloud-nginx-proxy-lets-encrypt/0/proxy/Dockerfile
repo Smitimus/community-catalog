@@ -1,5 +1,5 @@
-FROM jwilder/nginx-proxy:alpine
+FROM jwilder/nginx-proxy
 
-COPY uploadsize.conf /etc/nginx/conf.d/uploadsize.conf
+COPY uploadsize.conf /etc/nginx/conf.d/
 
-COPY proxytimeout.conf /etc/nginx/conf.d/proxytimeout.conf
+COPY proxytimeout.conf /etc/nginx/conf.d/
